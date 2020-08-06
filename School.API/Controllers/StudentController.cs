@@ -11,7 +11,7 @@ namespace School.API.Controllers
     public class StudentController : ApiController
     {
 
-        private static List<Student> students = new List<Student> { 
+        public static List<Student> students = new List<Student> { 
             new Student{ Id = 1, FirstName="Samuel", LastName = "Legrain"},
             new Student{ Id = 2, FirstName="Cédric", LastName = "Pietquin"},
             new Student{ Id = 3, FirstName="Hanen", LastName = "Ben Hassine"},
@@ -29,6 +29,7 @@ namespace School.API.Controllers
             return students;
         }
         //GET : api/Student/{id}
+        [Route("api/Student/{id:StudentIdExist}")]
         public Student Get(int id)
         {
             return students.Where(s => s.Id == id).SingleOrDefault();
@@ -58,10 +59,10 @@ namespace School.API.Controllers
         }
         [HttpPut]
         [HttpPatch]
-        [Route("Toto")]
-        public string TestToto()
+        [Route("Toto/{id:alpha:maxlength(12):regex(^A)}")]
+        public string TestToto(string id)
         {
-            return "toto";
+            return id;
         }
     }
 }
