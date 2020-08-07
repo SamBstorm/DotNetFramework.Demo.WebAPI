@@ -1,4 +1,5 @@
-﻿using School.API.Models;
+﻿using School.API.Infrastructures.Authentication;
+using School.API.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,18 +11,8 @@ namespace School.API.Controllers
 {
     public class StudentController : ApiController
     {
-
-        public static List<Student> students = new List<Student> { 
-            new Student{ Id = 1, FirstName="Samuel", LastName = "Legrain"},
-            new Student{ Id = 2, FirstName="Cédric", LastName = "Pietquin"},
-            new Student{ Id = 3, FirstName="Hanen", LastName = "Ben Hassine"},
-            new Student{ Id = 4, FirstName="Jérémy", LastName = "Samyn"},
-            new Student{ Id = 5, FirstName="Olivier", LastName = "Paquet"},
-            new Student{ Id = 6, FirstName="Rachid", LastName = "Aferyad"},
-            new Student{ Id = 7, FirstName="Victor", LastName = "Kabela"},
-            new Student{ Id = 8, FirstName="Xavier", LastName = "Dubois"},
-            new Student{ Id = 9, FirstName="Yusuf", LastName = "Ozdemir"}
-        };
+        public static List<Student> students { get => MockUp.students; }
+        private static List<User> users { get => MockUp.users; }
 
         //GET : api/Student/
         public IEnumerable<Student> Get()
@@ -51,6 +42,7 @@ namespace School.API.Controllers
         }
 
         //DELETE : api/Student/{id}
+        [BasicAuthenticator("Admin")]
         public void Delete(int id)
         {
             Student s = Get(id);

@@ -89,9 +89,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructures\Authentication\BasicAuthenticatorAttribute.cs" />
+    <Compile Include="Infrastructures\Authentication\ResultWithChallenge.cs" />
     <Compile Include="Infrastructures\Constraints\StudentIdExistConstraint.cs" />
     <Compile Include="Infrastructures\Formatters\BrowserJsonFormatter.cs" />
+    <Compile Include="Models\MockUp.cs" />
     <Compile Include="Models\Student.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
